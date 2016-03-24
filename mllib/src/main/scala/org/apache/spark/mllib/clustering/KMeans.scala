@@ -50,17 +50,20 @@ class KMeans private (
   /**
    * Constructs a KMeans instance with default parameters: {k: 2, maxIterations: 20, runs: 1,
    * initializationMode: "k-means||", initializationSteps: 5, epsilon: 1e-4, seed: random}.
+   * 函数型设置
    */
   @Since("0.8.0")
   def this() = this(2, 20, 1, KMeans.K_MEANS_PARALLEL, 5, 1e-4, Utils.random.nextLong())
 
   /**
+   * 得到k
    * Number of clusters to create (k).
    */
   @Since("1.4.0")
   def getK: Int = k
 
   /**
+   * 聚类数K
    * Set the number of clusters to create (k). Default: 2.
    */
   @Since("0.8.0")
@@ -70,6 +73,7 @@ class KMeans private (
   }
 
   /**
+   * 最大迭代次数（此参数需要修改，用聚类中心点RMS变化幅度）
    * Maximum number of iterations allowed.
    */
   @Since("1.4.0")
@@ -85,6 +89,7 @@ class KMeans private (
   }
 
   /**
+   * 初始点选择模式
    * The initialization algorithm. This can be either "random" or "k-means||".
    */
   @Since("1.4.0")
@@ -104,6 +109,7 @@ class KMeans private (
 
   /**
    * :: Experimental ::
+   * 算法运行次数
    * Number of runs of the algorithm to execute in parallel.
    */
   @Since("1.4.0")
@@ -137,6 +143,7 @@ class KMeans private (
 
   /**
    * Number of steps for the k-means|| initialization mode
+   * Kmeans中步数
    */
   @Since("1.4.0")
   def getInitializationSteps: Int = initializationSteps
@@ -155,6 +162,7 @@ class KMeans private (
   }
 
   /**
+   * 阈值
    * The distance threshold within which we've consider centers to have converged.
    */
   @Since("1.4.0")
@@ -171,6 +179,7 @@ class KMeans private (
   }
 
   /**
+   * 集群初始化随机种子
    * The random seed for cluster initialization.
    */
   @Since("1.4.0")
@@ -187,6 +196,7 @@ class KMeans private (
 
   // Initial cluster centers can be provided as a KMeansModel object rather than using the
   // random or k-means|| initializationMode
+  //初始点选择模式：随机orkmeans
   private var initialModel: Option[KMeansModel] = None
 
   /**
